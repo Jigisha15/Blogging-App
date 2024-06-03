@@ -1,0 +1,44 @@
+{% extends "index.html" %}
+
+{% block title %}| Register{% endblock title %}
+
+{% block register %}
+    <h1 class="text-center">Register</h1>
+<div class="mx-auto border w-25 px-3 pt-5 pb-4">
+  <form method="post" class="d-flex flex-column gap-2">
+    
+    <div class="form-display d-flex justify-content-around">
+      <label for="name">Name</label>
+      <input class="inputs" type="text" id="name" name="name" placeholder="Enter Your Name" required />
+    </div>
+    
+    <div class="form-display d-flex justify-content-around">
+      <label for="email">Email</label>
+      <input class="inputs" type="email" id="email" name="email" placeholder="Enter Your Email ID" required />
+    </div>
+    
+    <div class="form-display d-flex justify-content-around">
+      <label for="password">Password</label>
+      <input class="inputs" type="password" id="password" name="password" placeholder="Enter Your Password" required />
+    </div>
+    
+    <button class="submit btn btn-outline-success mx-auto mt-4" style="width:100px;">Submit</button>
+  </form>
+</div>
+
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{category}} alert-dismissible fade show mx-auto w-25 mt-3" role="alert">
+          {{message}}
+      <button type="button" class="btn-close  btn-{{category}}" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+{% endblock register %}

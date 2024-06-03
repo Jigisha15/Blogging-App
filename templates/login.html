@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+
+{% block title %}| Login{% endblock title %}
+
+{% block login %}
+    <h1 class="text-center">Login</h1>
+
+
+    <form action="" method="post" class="d-flex flex-column gap-2 mx-auto my-3 border px-5 py-3 w-25">
+        <label for="email">Email ID</label>
+        <input type="email" name="email" id="email" placeholder="Enter Email ID">
+
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Enter Password">
+
+        <button type="submit" class="btn btn-outline-success">Login</button>
+    </form>
+
+
+    {% with messages=get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{category}} alert-dismissible fade show mx-auto w-25 mt-3" role="alert">
+                    {{message}}
+                <button type="button" class="btn-close btn-{{category}}" data-bs-dismiss="alert" aria-label="Close"></button>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+{% endblock login %}

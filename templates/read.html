@@ -1,0 +1,52 @@
+{% extends "index.html" %}
+
+{% block title %}Read{% endblock title %}
+
+
+{% block read %}
+    <h1 class="text-center mb-3">View Users</h1>
+
+    <table class="mx-auto">
+        <tr>
+            <th class="border px-3 py-1 text-center">User Id</th>
+            <th class="border px-3 py-1 text-center">User Name</th>
+            <th class="border px-3 py-1 text-center">Email Id</th>
+            <th class="border px-3 py-1 text-center">Date Joined</th>
+            <th class="border px-3 py-1 text-center">Actions</th>
+        </tr>
+
+        {% for d in data %}
+        <tr>
+            <td class="border px-3 py-1 text-center">{{d.user_id}}</td>
+            <td class="border px-3 py-1 text-center">{{d.name}}</td>
+            <td class="border px-3 py-1 text-center">{{d.email}}</td>
+            <td class="border px-3 py-1 text-center">{{d.date_joined}}</td>
+            <td class="border px-3 py-1 text-center d-flex gap-2">
+                <form action="{{url_for('read')}}" method="post">
+                    <input type="hidden" name="update" value="{{d.user_id}}">
+                    <!--<input type="hidden" name="action" value="update">-->
+                    <button type="submit" class="btn btn-outline-info">Update</button>
+                </form>
+
+                <form action="{{url_for('delete')}}" method="post">
+                    <input type="hidden" name="delete" value="{{d.user_id}}">
+                    <!--<input type="hidden" name="action" value="delete">-->
+                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+    {% with messages=get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category,message in messages %}
+                <div class="alert alert-{{category}} alert-dismissible fade show mx-auto w-25 mt-3" role="alert">
+                    {{message}}
+                <button type="button" class="btn-close btn-{{category}}" data-bs-dismiss="alert" aria-label="Close"></button>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+{% endblock read %}
+
