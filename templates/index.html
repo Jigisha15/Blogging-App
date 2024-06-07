@@ -36,81 +36,90 @@
     </nav>
 
     <!--SIDEBAR-->
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark position-absolute" style="width: 300px; height:92vh">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
 
-      {% if logged_in %}
+    <div class="center d-flex">
+      <!--
+      <div class="sidebardiv">
+      -->
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark position-absolute" style="width:20%; height:92vh">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+
+          {% if logged_in %}
       
-      <div class="dropdown">
-        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong>{{user.name}}</strong>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-            <li><a class="dropdown-item" href="logout">Logout</a></li>
-          </ul>
-      </div>
+          <div class="dropdown">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>{{user.name}}</strong>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                <li><a class="dropdown-item" href="logout">Logout</a></li>
+              </ul>
+          </div>
 
-      {% else %}
+          {% else %}
 
-      <button type="button" class="btn btn-outline-secondary">
-              <a class="nav-link" href="login">Login</a>
-      </button>
+          <button type="button" class="btn btn-outline-secondary">
+                  <a class="nav-link" href="login">Login</a>
+          </button>
 
-      {% endif %}
+          {% endif %}
 
-    </a>
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item">
-        <a href="/" class="nav-link active" aria-current="page">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="/"></use></svg>
-            Home
         </a>
-      </li>
-      <li>
-        <a href="register" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="register"></use></svg>
-          Register
-        </a>
-      </li>
-      {% if logged_in %}
-      <li>
-        <a href="dashboard" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="dashboard"></use></svg>
-          Dashboard
-        </a>
-      </li>
-      <li>
-        <a href="profile" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="profile"></use></svg>
-          Profile
-          </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="/" class="nav-link text-white" aria-current="page">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="/"></use></svg>
+                Home
+            </a>
           </li>
-        {% endif %}
-        <li>
-        <a href="aboutus" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="aboutus"></use></svg>
-          About Us
-        </a>
-      </li>
-        <li>
-        <a href="read" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="read"></use></svg>
-          Read
-        </a>
-      </li>
-    </ul>
-  </div>
-
-    {% block register %}{% endblock register %}
-    {% block login %}{% endblock login %}
-    {% block read %}{% endblock read %}
-    {% block update %}{% endblock update %}
-    {% block dashboard %}{% endblock dashboard %}
-    {% block profile %}{% endblock profile %}
-    {% block aboutus %}{% endblock aboutus %}
-
+          <li>
+            <a href="register" class="nav-link text-white">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="register"></use></svg>
+              Register
+            </a>
+          </li>
+          {% if logged_in %}
+          <li>
+            <a href="dashboard" class="nav-link text-white">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="dashboard"></use></svg>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="profile" class="nav-link text-white">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="profile"></use></svg>
+              Profile
+              </a>
+              </li>
+            {% endif %}
+            <li>
+            <a href="aboutus" class="nav-link text-white">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="aboutus"></use></svg>
+              About Us
+            </a>
+          </li>
+            <li>
+            <a href="read" class="nav-link text-white">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="read"></use></svg>
+              Read
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!--
+      </div>
+    -->
+      <div class="contentdiv" style="width:80%; position:absolute; right:0;">
+        {% block register %}{% endblock register %}
+        {% block login %}{% endblock login %}
+        {% block read %}{% endblock read %}
+        {% block update %}{% endblock update %}
+        {% block dashboard %}{% endblock dashboard %}
+        {% block profile %}{% endblock profile %}
+        {% block aboutus %}{% endblock aboutus %}
+      </div>
+    </div>
 
       <div class="w-100 p-2 bg-body-tertiary d-flex align-items-center justify-content-center position-fixed fixed-bottom" style="height:50px;">
           <h1 class="" style="font-size:15px;">Developed By : <a href="https://portfolio-jigisha15.vercel.app/" class="text-dark fw-bold text-decoration-none" target="_blank">Jigisha Ghanekar</a> and <a href="https://portfolio-phi-ten-18.vercel.app/" class="text-dark fw-bold text-decoration-none" target="_blank">Gautami Gupta</a> </h1>

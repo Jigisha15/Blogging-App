@@ -4,4 +4,42 @@
 
 {% block profile %}
     <h1 class="text-center">Profile</h1>
+
+    <div class="card mx-auto" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{user.name}}</li>
+        <li class="list-group-item">{{user.email}}</li>
+        <li class="list-group-item">{{user.date_joined}}</li>
+    </ul>
+    <div class="card-body">
+        <a href='update?user_id={{user.user_id}}' class="btn btn-outline-success" type="button">Update Profile</a>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Delete
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header d-flex align-items-center justify-content-center">
+                        <h1 class="mt-1" style="font-size:20px;">Do you want to delete your account?</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-footer d-flex gap-2 justify-content-center ">
+                        <form action="{{url_for('delete')}}" method="post">
+                            <input type="hidden" name="delete" value="{{user.user_id}}">
+                            <button type="submit" class="btn btn-outline-danger" data-bs-dismiss="modal">Yes</button>
+                        </form>
+                        <button type="button" class="btn btn-outline-success " data-bs-dismiss="modal">No</button>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+    </div>
 {% endblock profile %}

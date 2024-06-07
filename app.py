@@ -97,7 +97,8 @@ def login():
             session['logged_in'] = True
             session['email'] = user.email
             session['name'] = user.name
-            flash("Successfully Logged In!", 'success')
+            # flash("Successfully Logged In!", 'success')
+            return redirect('dashboard')
         else:
             flash('Invalid Credentials', 'danger')
     return render_template('login.html')
@@ -123,14 +124,13 @@ def read():
 @app.route('/delete', methods=['GET', 'POST'])
 def delete():
     user_id = request.form.get('delete')
-    # action = request.form.get('action')
     if request.method == 'POST':
-        # if action == 'delete':
             user = User.query.filter_by(user_id=user_id).first()
             db.session.delete(user)
             db.session.commit()
+            session.clear()
             flash("User Deleted Successfully", 'danger')
-            return redirect('read')
+            return redirect('register')
     return "delete"
 
 # UPDATE
@@ -157,16 +157,22 @@ def update():
         flash('User Details Updated Successfully!', 'success')
     return render_template("update.html", user=user)
 
+# DASHBOARD
 @app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html')
 
+# ABOUT US
 @app.route('/aboutus')
 def aboutus():
     return render_template('aboutus.html')
 
+# PROFILE
 @app.route('/profile')
 def profile():
+    if get_logged_in_user():
+        user = User.query.filter_by(email=session['email']).first()
+        return render_template('profile.html', user=user)
     return render_template('profile.html')
 
 if __name__ == "__main__":
