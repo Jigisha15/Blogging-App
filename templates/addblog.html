@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+
+{% block title %} | Write a Blog{% endblock title %}
+
+{% block addblog %}
+    <h1 class="text-center">Write A New Blog</h1>
+
+<form action="{{url_for('addblog')}}" method="post" class="border d-flex flex-column align-items-center gap-2 mx-auto w-75 py-5 shadow">
+    <!--<div class="form-display">-->
+        <label for="blog_title" class="text-uppercase fw-bold">Enter Blog Title</label>
+        <input class="w-50" type="text" name="blog_title" id="blog_title">
+    <!--</div>-->
+
+    <!--<div<div class="form-display">-->
+        <label for="blog_body" class="text-uppercase fw-bold">Write Blog</label>
+        <textarea class="w-50" name="blog_body" id="blog_body" rows="3"></textarea>
+    <!--</div>-->
+
+    <input type="hidden" name="blog_submit" value={{user.user_id}}>
+    <button type="submit" class="btn btn-outline-success mx-auto">Post</button>
+</form>
+
+
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+        <div class="alert alert-{{category}} alert-dismissible fade show mx-auto w-25 mt-3" role="alert">
+          {{message}}
+            <button type="button" class="btn-close  btn-{{category}}" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+{% endblock addblog %}
