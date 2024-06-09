@@ -24,8 +24,8 @@
           <!--
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           -->
-            <form class="d-flex mx-auto w-50" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex mx-auto w-50" role="search" method="post" action="{{url_for('search')}}">
+              <input class="form-control me-2" type="search" name="search_blog" id="search_blog" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
           <!--
@@ -67,12 +67,14 @@
         </a>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
+          <!--
           <li class="nav-item">
             <a href="/" class="nav-link text-white" aria-current="page">
               <svg class="bi me-2" width="16" height="16"><use xlink:href="/"></use></svg>
-                Home
+              Home
             </a>
           </li>
+          -->
           <li>
             <a href="register" class="nav-link text-white">
               <svg class="bi me-2" width="16" height="16"><use xlink:href="register"></use></svg>
@@ -99,12 +101,15 @@
               About Us
             </a>
           </li>
-            <li>
+          <!--
+            this should only be there for admin
+          <li>
             <a href="read" class="nav-link text-white">
               <svg class="bi me-2" width="16" height="16"><use xlink:href="read"></use></svg>
-              Read
+              View users
             </a>
           </li>
+          -->
             <li>
             <a href="blog_read" class="nav-link text-white">
               <svg class="bi me-2" width="16" height="16"><use xlink:href="read"></use></svg>
@@ -127,6 +132,7 @@
         {% block addblog %}{% endblock addblog %}
         {% block blog_edit %}{% endblock blog_edit %}
         {% block blog_read %}{% endblock blog_read %}
+        {% block view %}{% endblock view %}
       </div>
     </div>
 

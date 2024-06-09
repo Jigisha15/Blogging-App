@@ -60,7 +60,7 @@
                     </div>
 
                     <!--THIS IS FOR EDIT BLOG-->
-                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#editBlogModal{{b.blog_id}}">
+                    <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editBlogModal{{b.blog_id}}">
                         Edit
                     </button>
                     <!-- Modal -->
@@ -73,7 +73,7 @@
                                 <div class="modal-body d-flex flex-column align-items-center">
                                     <h1 class="fs-5">Do you want to edit this blog?</h1>
                                     <div class="choices d-flex gap-3">
-                                        <form action="" method="post">
+                                        <form action="{{url_for('dashboard')}}" method="post">
                                             <input type="hidden" name="blog_edit" value={{b.blog_id}}>
                                             <button type="submit" class="btn btn-outline-danger">YES</button>
                                         </form>

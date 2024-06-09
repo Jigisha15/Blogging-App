@@ -95,7 +95,7 @@ def login():
             session['name'] = user.name
             session['user_id'] = user.user_id
             # flash("Successfully Logged In!", 'success')
-            return redirect('dashboard')
+            return redirect('blog_read')
         else:
             flash('Invalid Credentials', 'danger')
     return render_template('login.html')
@@ -176,14 +176,28 @@ def blog_delete():
 # BLOG UPDATE
 @app.route('/blog_edit', methods=['GET', 'POST'])
 def blog_edit():
-    return render_template('blog_edit.html')
+    blog_id = request.args.get('blog_id')
+    blog = Blog.query.get_or_404(blog_id)
+    return render_template('blog_edit.html', blog=blog)
+
+
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    if request.method=='POST':
+        search_blog = request.form.get('search_blog')
+        blog = Blog.query.filter_by(blog_title=search_blog).first()
+        return render_template('view.html', blog=blog)
+    return "search"
 
 # USER DASHBOARD
-@app.route('/dashboard')
+@app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
     user = User.query.filter_by(email=session['email']).first()
     user_id=user.user_id
     blog = Blog.query.filter_by(user_id=user_id).all()
+    if request.method == 'POST':
+        blog_id = request.form.get('blog_edit')
+        return redirect(url_for('blog_edit', blog_id=blog_id))
     return render_template('dashboard.html', blog=blog)
 
 # ABOUT US
