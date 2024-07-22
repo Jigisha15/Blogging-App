@@ -178,6 +178,14 @@ def blog_delete():
 def blog_edit():
     blog_id = request.args.get('blog_id')
     blog = Blog.query.get_or_404(blog_id)
+    if request.method == 'POST':
+        updated_blog_title = request.form['updated_blog_title']
+        updated_blog_body = request.form['updated_blog_body']
+
+        blog.blog_title = updated_blog_title
+        blog.blog_body = updated_blog_body
+        db.session.commit()
+        flash("Blog Edited Successfully!", 'success')
     return render_template('blog_edit.html', blog=blog)
 
 

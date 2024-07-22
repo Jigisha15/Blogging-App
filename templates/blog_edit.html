@@ -3,7 +3,28 @@
 {% block title %} | Blog Edit{% endblock title %}
 
 {% block blog_edit %}
-    <h1>ID : {{blog.blog_id}}</h1>
-    <h1>Title : {{blog.blog_title}}</h1>
-    <h1>Body : {{blog.blog_body}}</h1>
+
+<h1 class="text-center text-uppercase fs-2 fw-bold">Update Blog</h1>
+
+<form action="{{url_for('blog_edit', blog_id=blog.blog_id)}}" method="post" class="border w-75 py-3 my-3 mx-auto d-flex flex-column align-items-center gap-2">
+    <div class="form-display d-flex flex-column align-items-center">
+        <label for="updated_blog_title" class="fw-bold">Edit Blog Title</label>
+        <textarea name="updated_blog_title" id="updated_blog_title" required>{{blog.blog_title}}</textarea>
+    </div>
+    <div class="form-display d-flex flex-column align-items-center">
+        <label for="updated_blog_body" class="fw-bold">Edit Blog</label>
+        <textarea name="updated_blog_body" id="updated_blog_body">{{blog.blog_body}}</textarea>
+    </div>
+    <button type="submit" class="btn btn-outline-success">Update Blog</button>
+</form>
+
+{% with messages=get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{category}} alert-dismissible fade show mx-auto w-25 mt-3" role="alert">
+                    {{message}}
+                <button type="button" class="btn-close btn-{{category}}" data-bs-dismiss="alert" aria-label="Close"></button>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 {% endblock blog_edit %}
